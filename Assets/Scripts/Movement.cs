@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float RotationSpeed = 50f;
+    public float RotationSpeed = 100f;
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
@@ -18,8 +18,13 @@ public class Movement : MonoBehaviour
     //Rotation Value
     //float yRotate = 0.0f;
     //float xRotate = 0.0f;
+
+    float verticalAxis;
+    float horizontalAxis; 
+
     void Update()
     {
+        /*
         if (Input.GetKey(KeyCode.W))
         {
             transform.Rotate(Vector3.left * RotationSpeed * Time.deltaTime);
@@ -35,8 +40,12 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(Vector3.up * RotationSpeed * Time.deltaTime);
-        }
+        }*/
 
+        verticalAxis = Input.GetAxis("Vertical");
+        horizontalAxis = Input.GetAxis("Horizontal");
+
+        transform.Rotate(Vector3.right * horizontalAxis * RotationSpeed * Time.deltaTime);
 
         //yaw += speedH * Input.GetAxis("Mouse X");
         pitch -= speedV * Input.GetAxis("Mouse Y");
