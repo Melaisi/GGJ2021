@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class FPSRaycast : MonoBehaviour
+public class FPSRaycasts : MonoBehaviour
 {
     private GameObject raycastedObj;
 
@@ -17,9 +17,13 @@ public class FPSRaycast : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        Debug.DrawRay(transform.position, fwd*10, Color.green);
+        layerMaskInteract = LayerMask.GetMask("target");
 
-        if (Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract.value))
+
+        if (Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract))
         {
+            Debug.Log(" ray intersects with a Collider");
             if (hit.collider.CompareTag("Object"))
             {
                 raycastedObj = hit.collider.gameObject;
