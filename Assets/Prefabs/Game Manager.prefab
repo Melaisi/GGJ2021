@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 756225304055424841}
   - component: {fileID: 756225304055424843}
   - component: {fileID: 756225304055424840}
+  - component: {fileID: 5633145716526027844}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -46,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTime: 0
   startingTime: 30
+  increaseValue: 5
+  decreseValue: 5
   countdownText: {fileID: 0}
 --- !u!114 &756225304055424840
 MonoBehaviour:
@@ -60,3 +63,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 0}
+--- !u!114 &5633145716526027844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756225304055424842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ca02b88d55efd4982e0e9bb70a05b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

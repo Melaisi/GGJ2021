@@ -23,4 +23,20 @@ public class GameEvent : MonoBehaviour
             onCorrectClick();
         }
     }
+
+    public void invokeMissClick()
+    {
+        if (onMissClick != null)
+        {
+            onMissClick();
+        }
+    }
+
+    public void invokeGameOver()
+    {
+        if (onGameOver != null)
+        {
+            onGameOver();
+        }
+    }
 }

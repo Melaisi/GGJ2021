@@ -41,6 +41,7 @@ public class FPSRaycasts : MonoBehaviour
         else
         {
             CrosshairNormal();
+            missClicked();
         }
     }
 
@@ -70,5 +71,16 @@ public class FPSRaycasts : MonoBehaviour
             // then invoke miss clicked event 
 
         }
+    }
+    /// <summary>
+    /// Method to set what to do when player missclick... 
+    /// </summary>
+    void missClicked()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameEvent.current.invokeMissClick();
+        }
+        
     }
 }

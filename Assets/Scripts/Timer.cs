@@ -26,6 +26,8 @@ public class Timer : MonoBehaviour
         if (currentTime <= 0)
         {
             currentTime = 0;
+            // gameover 
+            GameEvent.current.invokeGameOver();
         }
         if (currentTime <= 10)
         {

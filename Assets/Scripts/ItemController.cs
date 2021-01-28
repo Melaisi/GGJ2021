@@ -22,6 +22,7 @@ public class ItemController : MonoBehaviour
     {
         // Subscribe to GameEvent Action 
         GameEvent.current.onCorrectClick += onCorrectClick;
+        GameEvent.current.onGameOver += onGameOver;
 
         // For easier setup for the lower and upper range utlize two child gameobejcts
         lowerSpawnRange = lowerSpawnRangeTransform.position;
@@ -65,6 +66,13 @@ public class ItemController : MonoBehaviour
     {
         Debug.Log("Correct click relocate gameobject!");
         setRandomLocation();
+    }
+
+    void onGameOver()
+    {
+        // stop invokeRepeat and disaple game object 
+        CancelInvoke("setRandomLocation");
+        gameObject.SetActive(false);
     }
 
     private void OnDestroy()
