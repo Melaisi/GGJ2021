@@ -16,7 +16,8 @@ public class Flashlight : MonoBehaviour
 
      void Update()
     {
+        // https://youtu.be/Bb63Pjx9q5s 
         transform.position = goFollow.transform.position + vectOffset;
-        transform.position = Quaternion.Slerp(transform.rotation, goFollow.transform.rotation, speed * Time.deltaTime);
+        transform.position = Quaternion.Slerp(transform.rotation, goFollow.transform.rotation, speed * Time.deltaTime).eulerAngles;
     }
 }

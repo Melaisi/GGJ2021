@@ -13,13 +13,14 @@ public class ItemController : MonoBehaviour
 {
     [SerializeField] Vector3 lowerSpawnRange;
     [SerializeField] Vector3 upperSpawnRange;
-     float timer; 
+    [SerializeField] float relocateTimer=30f; //in Seconds  
 
     // Start is called before the first frame update
     void Start()
     {
         //set initial random location 
-        setRandomLocation();
+        //setRandomLocation();
+        InvokeRepeating("setRandomLocation", 1f, relocateTimer); // relocate object location every 30 seconds 
     }
 
     // Update is called once per frame
