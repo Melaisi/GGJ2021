@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour
 
         transform.Rotate(Vector3.right * horizontalAxis * RotationSpeed * Time.deltaTime);
 
-        //yaw += speedH * Input.GetAxis("Mouse X");
+        yaw += speedH * Input.GetAxis("Mouse X");
         pitch -= speedV * Input.GetAxis("Mouse Y");
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 
