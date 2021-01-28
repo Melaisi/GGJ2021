@@ -13,7 +13,7 @@ public class ItemController : MonoBehaviour
 {
     [SerializeField] Vector3 lowerSpawnRange;
     [SerializeField] Vector3 upperSpawnRange;
-    float timer; 
+     float timer; 
 
     // Start is called before the first frame update
     void Start()
