@@ -66,4 +66,9 @@ public class ItemController : MonoBehaviour
         Debug.Log("Correct click relocate gameobject!");
         setRandomLocation();
     }
+
+    private void OnDestroy()
+    {
+        GameEvent.current.onCorrectClick -= onCorrectClick;
+    }
 }

@@ -6,10 +6,16 @@ public class Timer : MonoBehaviour
 {
     public float currentTime = 0f;
     public float startingTime = 30;
-  
+    public float increaseValue = 5; // value that added to counter when item is correctly clicked 
+    public float decreseValue = 5; // value that subtracted from counter when item is miss clicked 
+
+
     [SerializeField] Text countdownText;
     void Start()
     {
+        // subscribe to event 
+        GameEvent.current.onCorrectClick += increaseTimer;
+        GameEvent.current.onMissClick += decreseTimer;
         currentTime = startingTime;
     }
     void Update()
@@ -25,5 +31,20 @@ public class Timer : MonoBehaviour
         {
             countdownText.color = Color.red;
         }
+    }
+
+    void increaseTimer()
+    {
+        currentTime += increaseValue;
+    }
+    void decreseTimer()
+    {
+        currentTime -= increaseValue;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvent.current.onCorrectClick -= increaseTimer;
+        GameEvent.current.onMissClick -= decreseTimer;
     }
 }
