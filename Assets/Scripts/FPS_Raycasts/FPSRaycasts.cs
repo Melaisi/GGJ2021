@@ -23,17 +23,19 @@ public class FPSRaycasts : MonoBehaviour
 
         if (Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract))
         {
-            Debug.Log(" ray intersects with a Collider");
+            //Debug.Log(" ray intersects with a Collider");
             if (hit.collider.CompareTag("Object"))
             {
                 raycastedObj = hit.collider.gameObject;
                 CrosshairActive();
 
-                if (Input.GetKeyDown("e"))
+                itemFound();
+                
+                /*if (Input.GetKeyDown("e"))
                 {
                     Debug.Log("I HAVE INTERACTED WITH AN OBJECT!");
                     raycastedObj.SetActive(false);
-                }
+                }*/
             }
         }
         else
@@ -50,5 +52,23 @@ public class FPSRaycasts : MonoBehaviour
     void CrosshairNormal()
     {
         crosshairUI.color = Color.white;
+    }
+
+    /// <summary>
+    /// Method to set what to do when item is found... 
+    /// </summary>
+    void itemFound()
+    {
+        // invoke correct click event if mouse is clicked 
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameEvent.current.invokeCorrectClick();
+        }
+        else
+        {
+            // count down three seconds if the person didn't click the item 
+            // then invoke miss clicked event 
+
+        }
     }
 }

@@ -11,13 +11,21 @@ using UnityEngine;
 /// </summary>
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] Vector3 lowerSpawnRange;
-    [SerializeField] Vector3 upperSpawnRange;
-    [SerializeField] float relocateTimer=30f; //in Seconds  
+    [SerializeField] Transform lowerSpawnRangeTransform;
+    [SerializeField] Transform upperSpawnRangeTransform;
+    Vector3 lowerSpawnRange;
+    Vector3 upperSpawnRange;
+    [SerializeField] float relocateTimer=1f; //in Seconds  
 
     // Start is called before the first frame update
     void Start()
     {
+        // Subscribe to GameEvent Action 
+        GameEvent.current.onCorrectClick += onCorrectClick;
+
+        // For easier setup for the lower and upper range utlize two child gameobejcts
+        lowerSpawnRange = lowerSpawnRangeTransform.position;
+        upperSpawnRange = upperSpawnRangeTransform.position;
         //set initial random location 
         //setRandomLocation();
         InvokeRepeating("setRandomLocation", 1f, relocateTimer); // relocate object location every 30 seconds 
@@ -53,5 +61,9 @@ public class ItemController : MonoBehaviour
         transform.position = getRandomLocation();
     }
 
-
+    void onCorrectClick()
+    {
+        Debug.Log("Correct click relocate gameobject!");
+        setRandomLocation();
+    }
 }
