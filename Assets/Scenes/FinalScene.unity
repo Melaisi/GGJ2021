@@ -216,6 +216,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -26
       objectReference: {fileID: 0}
+    - target: {fileID: 9005838448943649830, guid: 644b4363c7c19134aab393e29e607cae,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: b6cff0341ad1089478d1182ff2e169d3,
+        type: 3}
     - target: {fileID: 9005838449159957200, guid: 644b4363c7c19134aab393e29e607cae,
         type: 3}
       propertyPath: m_Pivot.y
@@ -236,6 +242,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9005838449159957201, guid: 644b4363c7c19134aab393e29e607cae,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: b6cff0341ad1089478d1182ff2e169d3,
+        type: 3}
     - target: {fileID: 9005838449243870824, guid: 644b4363c7c19134aab393e29e607cae,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1294,6 +1306,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   crosshairUI: {fileID: 2096977869}
+  isPlaying: 1
 --- !u!1 &1233805652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1590,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1486158989}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1487152249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 756225304055424840, guid: 848d7b64e3cf7354fbbdd59e5886be83,
+    type: 3}
+  m_PrefabInstance: {fileID: 1015515401}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fbb90736695734ba5c7bee9e9ee3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1622526284 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9005838449243870824, guid: 644b4363c7c19134aab393e29e607cae,
@@ -1865,6 +1890,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8719580269739953443, guid: ffa582f90360cf24393537ac52d41e3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1487152249}
+    - target: {fileID: 8719580269739953443, guid: ffa582f90360cf24393537ac52d41e3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
     - target: {fileID: 8719580270351153478, guid: ffa582f90360cf24393537ac52d41e3b,
         type: 3}
       propertyPath: m_Name
@@ -1979,6 +2014,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719580270525030946, guid: ffa582f90360cf24393537ac52d41e3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1487152249}
+    - target: {fileID: 8719580270525030946, guid: ffa582f90360cf24393537ac52d41e3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719580271289311519, guid: ffa582f90360cf24393537ac52d41e3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1487152249}
+    - target: {fileID: 8719580271289311519, guid: ffa582f90360cf24393537ac52d41e3b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffa582f90360cf24393537ac52d41e3b, type: 3}
