@@ -15,6 +15,10 @@ public class GameEvent : MonoBehaviour
     public event Action onCorrectClick;
     public event Action onMissClick;
     public event Action onGameOver;
+    public event Action onGamePasue;
+    public event Action onGameResume;
+    public event Action onGamePlaying; 
+
 
     public void invokeCorrectClick()
     {
@@ -32,11 +36,40 @@ public class GameEvent : MonoBehaviour
         }
     }
 
-    public void invokeGameOver()
+    public void invokeGameStatusChange(GameManager.GameStatus status)
     {
-        if (onGameOver != null)
+        switch (status)
         {
-            onGameOver();
+            case GameManager.GameStatus.Playing:
+                if(onGamePlaying != null)
+                {
+                    onGamePlaying(); // start new timer new score count relocate mouse click  and stuff 
+                }
+                break;
+            case GameManager.GameStatus.Pause:
+                if (onGamePasue != null)
+                {
+                    onGamePasue();// Stop timer and score count relocate mouse click and stuff 
+                }
+                break;
+            case GameManager.GameStatus.Resume:
+                if (onGameResume != null)
+                {
+                    onGameResume(); // continue timer and scoreount relocate mouse click and stuff
+                }
+
+                break;
+            case GameManager.GameStatus.GameOver:
+                if (onGameOver != null)
+                {
+                    onGameOver(); // continue timer and scoreount relocate mouse click and stuff
+                }
+
+                break;
+            default:
+                Debug.Log("Undefined Status!");
+                break;
         }
     }
+    
 }
