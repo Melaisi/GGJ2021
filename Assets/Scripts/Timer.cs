@@ -32,6 +32,11 @@ public class Timer : MonoBehaviour
         if (currentTime <= 10)
         {
             countdownText.color = Color.red;
+           // countdownText.fontSize = 
+        }
+        if (currentTime >= 10)
+        {
+            countdownText.color = Color.white;
         }
     }
 

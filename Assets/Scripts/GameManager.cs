@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
+
+    public GameObject GameOverUI;
+    public GameObject InGameScreen;
 
     /// <summary>
     /// Keep track of score and gamestatus ( GameOver ) 
@@ -38,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     void gameOver()
     {
+        GameOverUI.SetActive(true);
+        InGameScreen.SetActive(false);
         Debug.Log("Game Over");
     }
 

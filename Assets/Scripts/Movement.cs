@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float RotationSpeed = 100f;
+  //public float RotationSpeed = 100f;
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
     private float yaw = 0.0f;
     private float pitch = 0.0f;
+
+    public float upLimit;
+    public float downLimit;
+    public float leftLimit;
+    public float rightLimit;
+
+    [SerializeField] Camera cam;
     //Rotation Sensitivity
     //float RotationSensitivity = 500.0f; // help controll how far you can see
     //float minAngle = -180.0f;
@@ -19,8 +26,14 @@ public class Movement : MonoBehaviour
     //float yRotate = 0.0f;
     //float xRotate = 0.0f;
 
-    float verticalAxis;
-    float horizontalAxis; 
+    //float verticalAxis;
+    //float horizontalAxis; 
+
+    void Start()
+    {
+        cam.transform.Rotate(5, 235, 0);
+        //cam.transform.eulerAngles = new Vector3(cam.transform.eulerAngles.x, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);
+    }
 
     void Update()
     {
@@ -42,13 +55,15 @@ public class Movement : MonoBehaviour
             transform.Rotate(Vector3.up * RotationSpeed * Time.deltaTime);
         }*/
 
-        verticalAxis = Input.GetAxis("Vertical");
-        horizontalAxis = Input.GetAxis("Horizontal");
+     //   verticalAxis = Input.GetAxis("Vertical");
+    //    horizontalAxis = Input.GetAxis("Horizontal");
 
-        transform.Rotate(Vector3.right * horizontalAxis * RotationSpeed * Time.deltaTime);
+     //   transform.Rotate(Vector3.right * horizontalAxis * RotationSpeed * Time.deltaTime);
 
         yaw += speedH * Input.GetAxis("Mouse X");
         pitch -= speedV * Input.GetAxis("Mouse Y");
+        yaw = Mathf.Clamp(yaw, -leftLimit, rightLimit);
+        pitch = Mathf.Clamp(pitch, -upLimit, downLimit);
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 
         // Testing a solution to rotate camera based on : https://answers.unity.com/questions/762475/limit-range-camera-rotation.html 
