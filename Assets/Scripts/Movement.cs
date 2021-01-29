@@ -17,6 +17,9 @@ public class Movement : MonoBehaviour
     public float rightLimit;
 
     [SerializeField] Camera cam;
+
+    bool isPlaying = true;
+
     //Rotation Sensitivity
     //float RotationSensitivity = 500.0f; // help controll how far you can see
     //float minAngle = -180.0f;
@@ -31,6 +34,13 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        //subscribe to gameevent 
+
+        GameEvent.current.onGameOver += pauseMovment;
+        GameEvent.current.onGamePasue += pauseMovment;
+        GameEvent.current.onGamePlaying += resumeMovment;
+        GameEvent.current.onGameResume += resumeMovment;
+
         //cam.transform.Rotate(5, 235, 0);
         //cam.transform.eulerAngles = new Vector3(cam.transform.eulerAngles.x, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);
     }
@@ -55,16 +65,19 @@ public class Movement : MonoBehaviour
             transform.Rotate(Vector3.up * RotationSpeed * Time.deltaTime);
         }*/
 
-     //   verticalAxis = Input.GetAxis("Vertical");
-    //    horizontalAxis = Input.GetAxis("Horizontal");
+        //   verticalAxis = Input.GetAxis("Vertical");
+        //    horizontalAxis = Input.GetAxis("Horizontal");
 
-     //   transform.Rotate(Vector3.right * horizontalAxis * RotationSpeed * Time.deltaTime);
-
-        yaw += speedH * Input.GetAxis("Mouse X");
-        pitch -= speedV * Input.GetAxis("Mouse Y");
-        yaw = Mathf.Clamp(yaw, -leftLimit, rightLimit);
-        pitch = Mathf.Clamp(pitch, -upLimit, downLimit);
-        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+        //   transform.Rotate(Vector3.right * horizontalAxis * RotationSpeed * Time.deltaTime);
+        if (isPlaying)
+        {
+            yaw += speedH * Input.GetAxis("Mouse X");
+            pitch -= speedV * Input.GetAxis("Mouse Y");
+            yaw = Mathf.Clamp(yaw, -leftLimit, rightLimit);
+            pitch = Mathf.Clamp(pitch, -upLimit, downLimit);
+            transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+        }
+        
 
         // Testing a solution to rotate camera based on : https://answers.unity.com/questions/762475/limit-range-camera-rotation.html 
         //Rotate Y view
@@ -76,6 +89,24 @@ public class Movement : MonoBehaviour
         //xRotate = Mathf.Clamp(xRotate, minAngle, maxAngle);
 
         //transform.eulerAngles = new Vector3(yRotate, xRotate, 0.0f);
+
+    }
+
+    void pauseMovment()
+    {
+        isPlaying = false;  
+    }
+    void resumeMovment()
+    {
+        isPlaying = true;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvent.current.onGameOver -= pauseMovment;
+        GameEvent.current.onGamePasue -= pauseMovment;
+        GameEvent.current.onGamePlaying -= resumeMovment;
+        GameEvent.current.onGameResume -= resumeMovment;
 
     }
 }

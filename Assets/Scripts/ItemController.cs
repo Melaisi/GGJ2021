@@ -77,6 +77,7 @@ public class ItemController : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameEvent.current.onCorrectClick -= onCorrectClick;
+        GameEvent.current.onCorrectClick += onCorrectClick;
+        GameEvent.current.onGameOver += onGameOver;
     }
 }

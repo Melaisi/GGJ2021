@@ -14,12 +14,12 @@ public class Paused : MonoBehaviour
         {
             if (GameIsPaused)
             {
-                GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Resume);
+               
                 Resume();
             }
             else
             {
-                GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Pause);
+                
 
                 Pause();
             }
@@ -27,6 +27,8 @@ public class Paused : MonoBehaviour
     }
     public void Resume()
     {
+        Debug.Log("Resume the game");
+        GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Resume);
 
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -34,12 +36,15 @@ public class Paused : MonoBehaviour
     }
     void Pause()
     {
+        // invoke pause event 
+        GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Pause);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
     public void LoadMenu()
     {
+
         Time.timeScale = 1f;
         SceneManager.LoadScene("StartScreen");
     }
