@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        cam.transform.Rotate(5, 235, 0);
+        //cam.transform.Rotate(5, 235, 0);
         //cam.transform.eulerAngles = new Vector3(cam.transform.eulerAngles.x, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);
     }
 
