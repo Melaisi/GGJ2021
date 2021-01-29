@@ -13,7 +13,7 @@ public class FPSRaycasts : MonoBehaviour
 
     [SerializeField] private Image crosshairUI;
 
-    bool isPlaying = true;
+    [SerializeField] bool isPlaying = true;
 
     private void Start()
     {
@@ -107,6 +107,7 @@ public class FPSRaycasts : MonoBehaviour
         isPlaying = true;
     }
     void pauseMode() {
+        Debug.Log("is paused and the clicking should stop!");
         isPlaying = false;
     }
 

@@ -14,12 +14,12 @@ public class Paused : MonoBehaviour
         {
             if (GameIsPaused)
             {
-                GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Pause);
+                GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Resume);
                 Resume();
             }
             else
             {
-                GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Resume);
+                GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Pause);
 
                 Pause();
             }
