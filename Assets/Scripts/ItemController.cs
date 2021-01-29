@@ -23,6 +23,9 @@ public class ItemController : MonoBehaviour
         // Subscribe to GameEvent Action 
         GameEvent.current.onCorrectClick += onCorrectClick;
         GameEvent.current.onGameOver += onGameOver;
+        GameEvent.current.onGamePasue += pauseRelocating;
+        GameEvent.current.onGameResume += resumeRelocating;
+
 
         // For easier setup for the lower and upper range utlize two child gameobejcts
         lowerSpawnRange = lowerSpawnRangeTransform.position;
@@ -35,10 +38,10 @@ public class ItemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             setRandomLocation();
-        }
+        }*/
 
     }
 
@@ -79,5 +82,13 @@ public class ItemController : MonoBehaviour
     {
         GameEvent.current.onCorrectClick += onCorrectClick;
         GameEvent.current.onGameOver += onGameOver;
+    }
+
+    void pauseRelocating() {
+        gameObject.SetActive(false);
+    }
+    void resumeRelocating()
+    {
+        gameObject.SetActive(true  );
     }
 }

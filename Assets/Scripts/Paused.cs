@@ -39,13 +39,13 @@ public class Paused : MonoBehaviour
         // invoke pause event 
         GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Pause);
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         GameIsPaused = true;
     }
     public void LoadMenu()
     {
 
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         SceneManager.LoadScene("StartScreen");
     }
     public void QuitGame()

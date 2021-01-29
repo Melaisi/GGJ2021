@@ -24,24 +24,28 @@ public class Timer : MonoBehaviour
     }
     void Update()
     {
-        currentTime -= 1 * Time.deltaTime;
-        countdownText.text = currentTime.ToString("0");
+        if (isTimerRunning)
+        {
+            currentTime -= 1 * Time.deltaTime;
+            countdownText.text = currentTime.ToString("0");
 
-        if (currentTime <= 0)
-        {
-            currentTime = 0;
-            // gameover 
-            GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.GameOver);
+            if (currentTime <= 0)
+            {
+                currentTime = 0;
+                // gameover 
+                GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.GameOver);
+            }
+            if (currentTime <= 10)
+            {
+                countdownText.color = Color.red;
+                // countdownText.fontSize = 
+            }
+            if (currentTime >= 10)
+            {
+                countdownText.color = Color.white;
+            }
         }
-        if (currentTime <= 10)
-        {
-            countdownText.color = Color.red;
-           // countdownText.fontSize = 
-        }
-        if (currentTime >= 10)
-        {
-            countdownText.color = Color.white;
-        }
+        
         
     }
 
