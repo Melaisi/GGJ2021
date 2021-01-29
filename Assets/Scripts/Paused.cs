@@ -14,16 +14,20 @@ public class Paused : MonoBehaviour
         {
             if (GameIsPaused)
             {
+                GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Pause);
                 Resume();
             }
             else
             {
+                GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.Resume);
+
                 Pause();
             }
         }
     }
     public void Resume()
     {
+
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;

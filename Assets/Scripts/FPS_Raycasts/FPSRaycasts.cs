@@ -13,35 +13,52 @@ public class FPSRaycasts : MonoBehaviour
 
     [SerializeField] private Image crosshairUI;
 
+    bool isPlaying = true;
+
+    private void Start()
+    {
+        // subscribe to event manager 
+        GameEvent.current.onGameOver += pauseMode;
+        GameEvent.current.onGamePasue += pauseMode;
+        GameEvent.current.onGamePlaying += playingMode;
+        GameEvent.current.onGameResume += playingMode;
+
+
+
+    }
+
     void Update()
     {
-        RaycastHit hit;
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        Debug.DrawRay(transform.position, fwd*10, Color.green);
-        layerMaskInteract = LayerMask.GetMask("target");
-
-
-        if (Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract))
+        if (isPlaying) // execute code only if in playing mode
         {
-            //Debug.Log(" ray intersects with a Collider");
-            if (hit.collider.CompareTag("Object"))
+            RaycastHit hit;
+            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            Debug.DrawRay(transform.position, fwd * 10, Color.green);
+            layerMaskInteract = LayerMask.GetMask("target");
+
+
+            if (Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract))
             {
-                raycastedObj = hit.collider.gameObject;
-                CrosshairActive();
-
-                itemFound();
-                
-                /*if (Input.GetKeyDown("e"))
+                //Debug.Log(" ray intersects with a Collider");
+                if (hit.collider.CompareTag("Object"))
                 {
-                    Debug.Log("I HAVE INTERACTED WITH AN OBJECT!");
-                    raycastedObj.SetActive(false);
-                }*/
+                    raycastedObj = hit.collider.gameObject;
+                    CrosshairActive();
+
+                    itemFound();
+
+                    /*if (Input.GetKeyDown("e"))
+                    {
+                        Debug.Log("I HAVE INTERACTED WITH AN OBJECT!");
+                        raycastedObj.SetActive(false);
+                    }*/
+                }
             }
-        }
-        else
-        {
-            CrosshairNormal();
-            missClicked();
+            else
+            {
+                CrosshairNormal();
+                missClicked();
+            }
         }
     }
 
@@ -60,6 +77,7 @@ public class FPSRaycasts : MonoBehaviour
     /// </summary>
     void itemFound()
     {
+        
         // invoke correct click event if mouse is clicked 
         if (Input.GetMouseButtonDown(0))
         {
@@ -82,5 +100,22 @@ public class FPSRaycasts : MonoBehaviour
             GameEvent.current.invokeMissClick();
         }
         
+    }
+
+    void playingMode()
+    {
+        isPlaying = true;
+    }
+    void pauseMode() {
+        isPlaying = false;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvent.current.onGameOver -= pauseMode;
+        GameEvent.current.onGamePasue -= pauseMode;
+        GameEvent.current.onGamePlaying -= playingMode;
+        GameEvent.current.onGameResume -= playingMode;
+
     }
 }

@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject GameOverUI;
     public GameObject InGameScreen;
-
+    public enum GameStatus { Playing, Pause,  Resume , GameOver};
+    public static GameStatus gameStatus;
     /// <summary>
     /// Keep track of score and gamestatus ( GameOver ) 
     /// </summary>
@@ -23,9 +24,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         // subscribe to GameEvent 
         GameEvent.current.onCorrectClick += updateScore;
         GameEvent.current.onGameOver += gameOver;
+        
     }
 
     // Update is called once per frame
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
         InGameScreen.SetActive(false);
         Debug.Log("Game Over");
     }
+
 
     private void OnDestroy()
     {

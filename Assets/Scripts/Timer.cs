@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     public float increaseValue = 5; // value that added to counter when item is correctly clicked 
     public float decreseValue = 5; // value that subtracted from counter when item is miss clicked 
 
+    bool isTimerRunning = true;
 
     [SerializeField] Text countdownText;
     void Start()
@@ -16,7 +17,10 @@ public class Timer : MonoBehaviour
         // subscribe to event 
         GameEvent.current.onCorrectClick += increaseTimer;
         GameEvent.current.onMissClick += decreseTimer;
+        GameEvent.current.onGamePasue += pauseTimer;
+        GameEvent.current.onGameResume += resumeTimer;
         currentTime = startingTime;
+
     }
     void Update()
     {
@@ -27,7 +31,7 @@ public class Timer : MonoBehaviour
         {
             currentTime = 0;
             // gameover 
-            GameEvent.current.invokeGameOver();
+            GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.GameOver);
         }
         if (currentTime <= 10)
         {
@@ -38,6 +42,7 @@ public class Timer : MonoBehaviour
         {
             countdownText.color = Color.white;
         }
+        
     }
 
     void increaseTimer()
@@ -49,9 +54,26 @@ public class Timer : MonoBehaviour
         currentTime -= increaseValue;
     }
 
+    
+
+    void pauseTimer()
+    {
+        Debug.Log("Pause Timer");
+
+        isTimerRunning = false;
+    }
+    void resumeTimer()
+    {
+        Debug.Log("Resume Timer");
+        isTimerRunning = true;
+    }
+
     private void OnDestroy()
     {
         GameEvent.current.onCorrectClick -= increaseTimer;
         GameEvent.current.onMissClick -= decreseTimer;
+        GameEvent.current.onGamePasue -= pauseTimer;
+        GameEvent.current.onGameResume -= resumeTimer;
     }
+
 }
