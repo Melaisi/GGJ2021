@@ -12,7 +12,7 @@ public class GameOverAudio : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        playWhenLosing();
+        //playWhenLosing();
         //subscribe the AudioSource play method to gameover event 
         GameEvent.current.onGameOver += playWhenLosing;
     }

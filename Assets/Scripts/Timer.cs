@@ -21,6 +21,7 @@ public class Timer : MonoBehaviour
         GameEvent.current.onMissClick += decreseTimer;
         GameEvent.current.onGamePasue += pauseTimer;
         GameEvent.current.onGameResume += resumeTimer;
+        GameEvent.current.onGameOver += overTimer;
         currentTime = startingTime;
 
     }
@@ -85,7 +86,7 @@ public class Timer : MonoBehaviour
     {
         Debug.Log("Game is obver");
         isGameOver = true;
-        gameObject.SetActive(false);
+        
     }
 
     private void OnDestroy()

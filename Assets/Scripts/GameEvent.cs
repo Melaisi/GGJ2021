@@ -62,7 +62,8 @@ public class GameEvent : MonoBehaviour
             case GameManager.GameStatus.GameOver:
                 if (onGameOver != null)
                 {
-                    onGameOver(); // continue timer and scoreount relocate mouse click and stuff
+                    Debug.Log("Gameover event is invoke");
+                    onGameOver(); // 
                 }
 
                 break;
