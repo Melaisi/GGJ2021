@@ -3403,6 +3403,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OffSetFlashlight
       objectReference: {fileID: 0}
+    - target: {fileID: 9136251715040214667, guid: accb6dbe57a6104429e4dbc2d500b283,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9136251715040214669, guid: accb6dbe57a6104429e4dbc2d500b283,
         type: 3}
       propertyPath: m_RootOrder
