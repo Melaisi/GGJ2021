@@ -11,6 +11,8 @@ public class Timer : MonoBehaviour
 
     bool isTimerRunning = true;
 
+    bool isGameOver = false; // keep track of gamestatus if gameover then donot run the update code as it invoke the gameover event repeatdly :: better to disable the code; 
+
     [SerializeField] Text countdownText;
     void Start()
     {
@@ -24,29 +26,36 @@ public class Timer : MonoBehaviour
     }
     void Update()
     {
-        if (isTimerRunning)
+        // this code should only work if the game is not over 
+        if (!isGameOver)
         {
-            currentTime -= 1 * Time.deltaTime;
-            countdownText.text = currentTime.ToString("0");
+            if (isTimerRunning)
+            {
+                currentTime -= 1 * Time.deltaTime;
+                countdownText.text = currentTime.ToString("0");
 
-            if (currentTime <= 0)
-            {
-                currentTime = 0;
-                // gameover 
-                GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.GameOver);
+                if (currentTime <= 0)
+                {
+                    currentTime = 0;
+                    // gameover 
+                    GameEvent.current.invokeGameStatusChange(GameManager.GameStatus.GameOver);
+                }
+                if (currentTime <= 10)
+                {
+                    countdownText.color = Color.red;
+                    // countdownText.fontSize = 
+                }
+                if (currentTime >= 10)
+                {
+                    countdownText.color = Color.white;
+                }
             }
-            if (currentTime <= 10)
-            {
-                countdownText.color = Color.red;
-                // countdownText.fontSize = 
-            }
-            if (currentTime >= 10)
-            {
-                countdownText.color = Color.white;
-            }
+
         }
-        
-        
+        else
+        {
+            Debug.Log("Game is over in timer");
+        }
     }
 
     void increaseTimer()
@@ -70,6 +79,13 @@ public class Timer : MonoBehaviour
     {
         Debug.Log("Resume Timer");
         isTimerRunning = true;
+    }
+
+    void overTimer()
+    {
+        Debug.Log("Game is obver");
+        isGameOver = true;
+        gameObject.SetActive(false);
     }
 
     private void OnDestroy()
