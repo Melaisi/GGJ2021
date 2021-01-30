@@ -61,11 +61,12 @@ public class Timer : MonoBehaviour
 
     void increaseTimer()
     {
+        
         currentTime += increaseValue;
     }
     void decreseTimer()
     {
-        currentTime -= increaseValue;
+        currentTime -= decreseValue;
     }
 
     
