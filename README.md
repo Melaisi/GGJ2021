@@ -1,2 +1,2 @@
 # GGJ2021
-For the global game Jam 2021
+Simple game find and click game, built for the global game Jam 2021 
